@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.andres.DAO.ClsUsuario;
 import com.andres.Entidades.Login;
+import com.andres.Entidades.usuario;
 import com.andres.Negocio.clsLogin;
 
 /**
@@ -43,23 +44,25 @@ public class ControllerAcceso extends HttpServlet {
 		
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
-		Login log = new Login();
+		
+		usuario log = new usuario();
 		clsLogin clsL = new clsLogin();
-		
-		log.setUser(user);
+
+		log.setUsuario(user);
 		log.setPass(pass);
-		
+
 		int valoracceso = clsL.acceso(log);
-		
-		if(valoracceso==1) {
-			ClsUsuario clsUsuario = new ClsUsuario();
-			var Usuario = clsUsuario.ListadoUSUARIOS();
-			response.sendRedirect("Saludo.jsp");
-			for(var iterar : Usuario)
-			{
-				System.out.println(iterar.getUsuario());
-			}
-		}else {
+
+		if (valoracceso == 1) {
+			//Este es un usuario Administrador
+			System.out.println("> Usted ha iniciado como Administrador.");
+			response.sendRedirect("Administrador.jsp");
+		} else if (valoracceso == 2) {
+			//Este es un usuario normal
+			System.out.println("> Usted ha iniciado como Usuario.");
+			response.sendRedirect("Usuario.jsp");
+		} else {
+			System.out.println("> Error.");
 			response.sendRedirect("Error.jsp");
 		}
 	}

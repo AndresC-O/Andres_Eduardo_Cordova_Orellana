@@ -17,4 +17,5 @@ public class Login {
 	public void setPass(String pass) {
 		Pass = pass;
 	}
+	
 }
