@@ -26,7 +26,7 @@ public class ClsLoginBD {
 				user.setIdUsuario(resultado.getInt("idUsuario"));
 				user.setUsuario(resultado.getString("Usuario"));
 				user.setPass(resultado.getString("PassWord"));
-				user.setTipoUsuario(resultado.getInt("tipoUsuario"));
+				user.setIdTipoUsuario(resultado.getInt("tipoUsuario"));
 				
 				System.out.println(resultado.getString("Usuario"));
 			}

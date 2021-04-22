@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionContext;
 
 import com.andres.DAO.ClsUsuario;
 import com.andres.Entidades.Login;
@@ -42,28 +44,40 @@ public class ControllerAcceso extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		
-		String user = request.getParameter("user");
-		String pass = request.getParameter("pass");
+		//Activando la Session, generara un PID
+		HttpSession session = request.getSession(true);
 		
-		usuario log = new usuario();
-		clsLogin clsL = new clsLogin();
+		//Destruyendo Session
+		String btncerrar = request.getParameter("btncerrar");
+		if(btncerrar != null) {
+			response.sendRedirect("index.jsp");
+			session.invalidate();
+		}
+		else {
+			String user = request.getParameter("user");
+			String pass = request.getParameter("pass");
+			
+			usuario log = new usuario();
+			clsLogin clsL = new clsLogin();
 
-		log.setUsuario(user);
-		log.setPass(pass);
+			log.setUsuario(user);
+			log.setPass(pass);
 
-		int valoracceso = clsL.acceso(log);
+			int valoracceso = clsL.acceso(log);
 
-		if (valoracceso == 1) {
-			//Este es un usuario Administrador
-			System.out.println("> Usted ha iniciado como Administrador.");
-			response.sendRedirect("Administrador.jsp");
-		} else if (valoracceso == 2) {
-			//Este es un usuario normal
-			System.out.println("> Usted ha iniciado como Usuario.");
-			response.sendRedirect("Usuario.jsp");
-		} else {
-			System.out.println("> Error.");
-			response.sendRedirect("Error.jsp");
+			if (valoracceso == 1) {
+				//Este es un usuario Administrador
+				System.out.println("> Usted ha iniciado como Administrador.");
+				response.sendRedirect("Administrador.jsp");
+				session.setAttribute("usuario", valoracceso);
+			} else if (valoracceso == 2) {
+				//Este es un usuario normal
+				System.out.println("> Usted ha iniciado como Usuario.");
+				response.sendRedirect("Usuario.jsp");
+			} else {
+				System.out.println("> Error.");
+				response.sendRedirect("Error.jsp");
+			}
 		}
 	}
 

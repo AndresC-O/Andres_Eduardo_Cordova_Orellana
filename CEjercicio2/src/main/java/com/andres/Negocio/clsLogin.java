@@ -13,12 +13,12 @@ public class clsLogin {
 		
 		user = clsLoginBD.ValidarLogin(log);
 		if (user != null) {
-			if (user.getTipoUsuario() == 1) {
+			if (user.getIdTipoUsuario() == 1) {
 				acceso = 1;
-				System.out.println(user.getTipoUsuario());
-			} else if (user.getTipoUsuario() == 2) {
+				System.out.println(user.getIdTipoUsuario());
+			} else if (user.getIdTipoUsuario() == 2) {
 				acceso = 2;
-				System.out.println(user.getTipoUsuario());
+				System.out.println(user.getIdTipoUsuario());
 			}
 		} else {
 			System.out.println("El usuario no existe");
