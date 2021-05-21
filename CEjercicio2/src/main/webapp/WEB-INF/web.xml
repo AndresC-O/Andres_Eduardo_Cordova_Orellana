@@ -10,8 +10,28 @@
   	<description></description>
   	<servlet-class>com.andres.Controladores.ControllerLoginBD</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ControllerAjax</servlet-name>
+  	<display-name>ControllerAjax</display-name>
+  	<description></description>
+  	<servlet-class>com.andres.Controladores.ControllerAjax</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ControllerFiles</servlet-name>
+  	<display-name>ControllerFiles</display-name>
+  	<description></description>
+  	<servlet-class>com.andres.Controladores.ControllerFiles</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ControllerLoginBD</servlet-name>
   	<url-pattern>/ControllerLoginBD</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerAjax</servlet-name>
+  	<url-pattern>/ControllerAjax</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ControllerFiles</servlet-name>
+  	<url-pattern>/ControllerFiles</url-pattern>
   </servlet-mapping>
 </web-app>
