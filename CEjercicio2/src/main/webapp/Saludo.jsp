@@ -34,6 +34,14 @@
 
 					var tabla = document.getElementById('tablaDatos');
 					for (let item of datos) {
+						
+						if(item.Usuario == "" || item.Pass == ""){
+							item.Usuario = "N/A";
+						}
+						else if(item.Usuario == null){
+							item.Usuario = "N/A";
+						}
+						
 						tabla.innerHTML +=
 							`
 					<tr>
